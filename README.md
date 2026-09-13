@@ -32,12 +32,20 @@ https://<dein-github-name>.github.io/joot-seiten/
 Das Repo muss öffentlich sein – GitHub Pages aus privaten Repos gibt es nur mit einem
 bezahlten Plan.
 
-## Diese beiden URLs braucht App Store Connect
+## Online seit dem 13. September 2026
+
+Repo: https://github.com/mcit68/joot-seiten (oeffentlich, GitHub Pages aus main/root)
 
 | Feld in App Store Connect | URL |
 |---|---|
-| Privacy Policy URL | `https://<name>.github.io/joot-seiten/datenschutz.html` |
-| Support URL / Marketing URL | `https://<name>.github.io/joot-seiten/support.html` |
+| Privacy Policy URL | https://mcit68.github.io/joot-seiten/datenschutz.html |
+| Support URL | https://mcit68.github.io/joot-seiten/support.html |
+| Marketing URL (freiwillig) | https://mcit68.github.io/joot-seiten/ |
+
+Die Seiten wurden ueber die GitHub-Weboberflaeche hochgeladen, nicht
+gepusht. Wer hier etwas aendert, muss es dort nachziehen — und umgekehrt.
+Am einfachsten aendert man direkt auf GitHub (Datei oeffnen, Stift,
+Commit) und uebertraegt die Aenderung danach hierher.
 
 ## Später ändern
 
