@@ -1,0 +1,96 @@
+/* Joot – Startseite im Stil des One-Pagers (gestaltung/onepager).
+   Gilt nur fuer index.html und en/index.html; Support und Datenschutz
+   bleiben bei stil.css. Schriften liegen selbst gehostet in schrift/,
+   damit keine Anfrage an fremde Server geht (Datenschutz). */
+@font-face{font-family:"Joot Serif";src:url(schrift/source-serif-4-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Joot Serif";src:url(schrift/source-serif-4-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Joot Sans";src:url(schrift/inter-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Joot Sans";src:url(schrift/inter-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Joot Sans";src:url(schrift/inter-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+
+:root{
+  --gruen:#1E7A50; --tief:#0B4B31; --nacht:#08301F;
+  --creme:#F4FBF5; --tinte:#15241C; --grau:#55655C; --linie:#DCE7DF; --hell:#EEF5F0;
+  --serif:"Joot Serif", ui-serif, Georgia, serif;
+  /* Breite der Telefonreihe; daran haengt auch, wie weit sie in den Kopf ragt */
+  --reihe:min(620px, calc(100vw - 40px));
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--tinte);
+  font:17px/1.55 "Joot Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing:antialiased}
+a{color:var(--gruen)}
+.breite{max-width:1040px;margin:0 auto;padding:0 20px}
+
+/* ---------- Kopf ---------- */
+.kopf{
+  background:radial-gradient(120% 90% at 85% 0%, #2A8F60 0%, transparent 55%),
+             linear-gradient(160deg, var(--gruen) 0%, var(--tief) 62%, var(--nacht) 100%);
+  color:var(--creme);
+  padding:32px 0 calc(var(--reihe) * 0.34 + 40px)}
+.leiste{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.marke{display:flex;align-items:center;gap:12px;color:inherit;text-decoration:none}
+.marke img{width:44px;height:44px;border-radius:10px;display:block}
+.marke svg{height:30px;width:auto;display:block}
+.plakette{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid #8FBDA5;border-radius:999px;padding:6px 13px;white-space:nowrap}
+.dachzeile{margin:56px 0 0;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#C5DDD0}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(40px, 7.4vw, 66px);
+  line-height:1.04;letter-spacing:-.01em;margin:10px 0 0}
+.lead{margin:20px 0 0;max-width:600px;font-size:clamp(17px, 2.3vw, 20px);line-height:1.45;color:#E2EEE6}
+
+/* ---------- Telefone ----------
+   Masse in cqw: Prozent der Reihenbreite. So bleibt die Anordnung des
+   One-Pagers auf jeder Bildschirmbreite gleich, nur kleiner. */
+.telefone{position:relative;width:var(--reihe);margin:calc(var(--reihe) * -0.34) auto 0;
+  aspect-ratio:100 / 78;container-type:inline-size}
+.tel{position:absolute;margin:0;background:#0C0D0D;padding:1cqw;border-radius:6.3cqw;
+  box-shadow:0 0 0 .27cqw #5B615E, 0 0 0 .54cqw #1B1D1C,
+             0 3cqw 7cqw rgba(4,24,15,.35), 0 .8cqw 1.9cqw rgba(0,0,0,.25)}
+.tel img{display:block;width:100%;height:auto;border-radius:5.4cqw}
+.tel::after{content:"";position:absolute;left:50%;transform:translateX(-50%);top:2.2cqw;
+  width:31%;height:3.3%;background:#000;border-radius:10cqw}
+.tel.mitte{width:33.8cqw;left:33.1cqw;top:0;z-index:3}
+.tel.links{width:29.2cqw;left:3.1cqw;top:8.5cqw;z-index:2;transform:rotate(-4deg)}
+.tel.rechts{width:29.2cqw;left:67.7cqw;top:8.5cqw;z-index:2;transform:rotate(4deg)}
+
+/* ---------- Drei Saeulen ---------- */
+.saeulen{display:grid;grid-template-columns:repeat(3, 1fr);gap:36px;margin:64px auto 0}
+.saeule{border-top:2px solid var(--gruen);padding-top:14px}
+.saeule .nr{font-family:var(--serif);font-weight:600;font-size:14px;letter-spacing:.06em;color:var(--gruen)}
+.saeule h2{font-family:var(--serif);font-weight:600;font-size:25px;line-height:1.15;margin:4px 0 0}
+.saeule p{font-size:16px;line-height:1.5;color:var(--grau);margin:10px 0 0}
+
+/* ---------- Erzaehlung ---------- */
+.geschichte{max-width:680px;margin:80px auto 0}
+.geschichte h2{font-family:var(--serif);font-weight:600;font-size:clamp(26px, 4vw, 34px);line-height:1.15;margin:0 0 16px}
+.geschichte p{font-size:18px;line-height:1.6;color:#2B3A31;margin:0 0 16px}
+
+/* ---------- Versprechen ---------- */
+.versprechen-teil{background:var(--hell);margin-top:72px;padding:56px 0 52px}
+.versprechen-teil h3{font-family:var(--serif);font-weight:600;font-size:26px;color:var(--tief);margin:0}
+.versprechen{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(3, 1fr);gap:28px}
+.versprechen li{position:relative;padding-left:20px;font-size:16px;line-height:1.5;color:var(--grau)}
+.versprechen li b{display:block;color:var(--tinte);font-weight:600;margin-bottom:2px}
+.versprechen li::before{content:"";position:absolute;left:0;top:.5em;width:8px;height:8px;border-radius:50%;background:var(--gruen)}
+.hinweis{margin:36px 0 0;padding-top:20px;border-top:1px solid var(--linie);font-size:15px;color:var(--grau)}
+
+/* ---------- Fuss ---------- */
+.fuss{padding:28px 20px 44px;font-size:14px;color:#8A9A90}
+.fuss nav{display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:12px}
+.fuss nav a{color:var(--tief);font-weight:500;text-decoration:none}
+.fuss nav a:hover{text-decoration:underline}
+.fuss p{margin:0}
+
+@media (max-width:760px){
+  .saeulen, .versprechen{grid-template-columns:1fr;gap:28px}
+  .saeulen{margin-top:48px}
+  .geschichte{margin-top:60px}
+  .dachzeile{margin-top:40px}
+}
+@media (max-width:420px){
+  .marke svg{height:24px}
+  .marke img{width:36px;height:36px;border-radius:8px}
+  .plakette{font-size:10.5px;padding:5px 10px}
+}
