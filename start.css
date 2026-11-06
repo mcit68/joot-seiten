@@ -1,140 +1,165 @@
-/* Joot – Startseite im Stil des One-Pagers (gestaltung/onepager).
-   Gilt nur fuer index.html und en/index.html; Support und Datenschutz
-   bleiben bei stil.css. Schriften liegen selbst gehostet in schrift/,
-   damit keine Anfrage an fremde Server geht (Datenschutz). */
-@font-face{font-family:"Joot Serif";src:url(schrift/source-serif-4-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"Joot Serif";src:url(schrift/source-serif-4-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+/* Joot – Startseite, Entwurf im neuen Stil.
+   Idee: Kacheln mit grossen Rundungen auf einer Salbei-Flaeche, ein tiefes
+   Petrol fuer Kopf und Versprechen, Limette nur fuer Knoepfe. Die grossen
+   blassen Formen sind die Blende aus dem Joot-Logo. */
+@font-face{font-family:"Joot Display";src:url(schrift/outfit-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Joot Display";src:url(schrift/outfit-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
 @font-face{font-family:"Joot Sans";src:url(schrift/inter-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:"Joot Sans";src:url(schrift/inter-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
 @font-face{font-family:"Joot Sans";src:url(schrift/inter-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
 
 :root{
-  --gruen:#1E7A50; --tief:#0B4B31; --nacht:#08301F;
-  --creme:#F4FBF5; --tinte:#15241C; --grau:#55655C; --linie:#DCE7DF; --hell:#EEF5F0;
-  --serif:"Joot Serif", ui-serif, Georgia, serif;
-  /* Breite der Telefonreihe; daran haengt auch, wie weit sie in den Kopf ragt */
-  --reihe:min(620px, calc(100vw - 40px));
+  --salbei:#AFD1C1;      /* Flaeche hinter den Kacheln */
+  --salbei-tief:#9CC4B1; /* Formen auf der Flaeche */
+  --petrol:#004941;      /* Kopf, Versprechen */
+  --tinte:#0B2420;       /* Text */
+  --grau:#4E625C;        /* Nebentext */
+  --limette:#C8F53C;     /* nur Knoepfe und Marken */
+  --weiss:#FFFFFF;
+  --creme:#F4FBF5;
+  --display:"Joot Display", "Avenir Next", system-ui, sans-serif;
+  --sans:"Joot Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --rund:24px;
+  color-scheme:light;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:#fff;color:var(--tinte);
-  font:17px/1.55 "Joot Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  -webkit-font-smoothing:antialiased}
-a{color:var(--gruen)}
-.breite{max-width:1040px;margin:0 auto;padding:0 20px}
+body{margin:0;background:var(--salbei);color:var(--tinte);font:17px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--petrol)}
+a:focus-visible,.knopf:focus-visible{outline:3px solid var(--limette);outline-offset:3px;border-radius:8px}
+.rahmen{max-width:1180px;margin:0 auto;padding:12px}
+.kachel{background:var(--weiss);border-radius:var(--rund)}
 
-/* ---------- Kopf ---------- */
-.kopf{
-  background:radial-gradient(120% 90% at 85% 0%, #2A8F60 0%, transparent 55%),
-             linear-gradient(160deg, var(--gruen) 0%, var(--tief) 62%, var(--nacht) 100%);
-  color:var(--creme);
-  padding:32px 0 calc(var(--reihe) * 0.34 + 40px)}
-.leiste{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.marke{display:flex;align-items:center;gap:12px;color:inherit;text-decoration:none}
-.marke img{width:44px;height:44px;border-radius:10px;display:block}
-.marke svg{height:30px;width:auto;display:block}
-.plakette{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
-  border:1px solid #8FBDA5;border-radius:999px;padding:6px 13px;white-space:nowrap}
-.dachzeile{margin:56px 0 0;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#C5DDD0}
-h1{font-family:var(--serif);font-weight:600;font-size:clamp(40px, 7.4vw, 66px);
-  line-height:1.04;letter-spacing:-.01em;margin:10px 0 0}
-.lead{margin:20px 0 0;max-width:600px;font-size:clamp(17px, 2.3vw, 20px);line-height:1.45;color:#E2EEE6}
+/* ---------- Kopf: eine grosse Kachel in Petrol ---------- */
+.kopf{position:relative;overflow:hidden;background:var(--petrol);color:var(--creme);
+  border-radius:var(--rund);padding:22px clamp(20px,4vw,48px) 0}
+.kopf .blende{position:absolute;right:-110px;top:-110px;width:600px;height:600px;color:rgba(244,251,245,.07);pointer-events:none}
+.kopf .blende.zwei{right:auto;left:-150px;top:auto;bottom:-190px;width:380px;height:380px;color:rgba(200,245,60,.07)}
+.leiste{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.marke{display:flex;align-items:center;gap:12px;color:var(--creme);text-decoration:none}
+.marke img{width:42px;height:42px;border-radius:10px;display:block}
+.marke svg{height:28px;width:auto;display:block}
+.nav{display:flex;gap:26px;font:600 13px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase}
+.nav a{color:var(--creme);text-decoration:none}
+.nav a:hover{color:var(--limette)}
+.held{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:24px;align-items:end;margin-top:48px}
+.kennung{font:600 13px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#A9D7C3;margin:0}
+.kennung::before{content:"// ";color:var(--limette)}
+h1{font:700 clamp(46px,7.2vw,84px)/.98 var(--display);letter-spacing:-.02em;margin:16px 0 0;text-wrap:balance}
+.lead{font-size:clamp(17px,2vw,20px);line-height:1.5;color:#D6E9E0;max-width:30em;margin:22px 0 0}
+.knoepfe{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 56px}
+.knopf{display:inline-flex;align-items:center;gap:8px;font:600 16px/1 var(--sans);text-decoration:none;
+  padding:15px 24px;border-radius:999px;transition:transform .12s ease, background-color .15s ease}
+.knopf:active{transform:scale(.97)}
+.knopf.voll{background:var(--limette);color:var(--tinte)}
+.knopf.voll:hover{background:#D7FA6A}
+.knopf.rand{border:1.5px solid rgba(244,251,245,.45);color:var(--creme)}
+.knopf.rand:hover{border-color:var(--creme)}
+.plakette{display:inline-block;background:var(--limette);color:var(--tinte);font:600 11px/1 var(--sans);
+  letter-spacing:.12em;text-transform:uppercase;padding:7px 11px;border-radius:999px}
 
-/* ---------- Telefone ----------
-   Masse in cqw: Prozent der Reihenbreite. So bleibt die Anordnung des
-   One-Pagers auf jeder Bildschirmbreite gleich, nur kleiner. */
-.telefone{position:relative;width:var(--reihe);margin:calc(var(--reihe) * -0.34) auto 0;
-  aspect-ratio:100 / 78;container-type:inline-size}
-.tel{position:absolute;margin:0;background:#0C0D0D;padding:1cqw;border-radius:6.3cqw;
-  box-shadow:0 0 0 .27cqw #5B615E, 0 0 0 .54cqw #1B1D1C,
-             0 3cqw 7cqw rgba(4,24,15,.35), 0 .8cqw 1.9cqw rgba(0,0,0,.25)}
-.tel img{display:block;width:100%;height:auto;border-radius:5.4cqw}
-.tel::after{content:"";position:absolute;left:50%;transform:translateX(-50%);top:2.2cqw;
-  width:31%;height:3.3%;background:#000;border-radius:10cqw}
-.tel.mitte{width:33.8cqw;left:33.1cqw;top:0;z-index:3}
-.tel.links{width:29.2cqw;left:3.1cqw;top:8.5cqw;z-index:2;transform:rotate(-4deg)}
-.tel.rechts{width:29.2cqw;left:67.7cqw;top:8.5cqw;z-index:2;transform:rotate(4deg)}
+/* Telefone sitzen auf der Unterkante des Kopfs */
+.telefone{position:relative;aspect-ratio:100/74;container-type:inline-size}
+.tel{position:absolute;bottom:-16cqw;margin:0;background:#0C0D0D;padding:1.6cqw;border-radius:9cqw;
+  box-shadow:0 0 0 .4cqw #5B615E,0 0 0 .8cqw #1B1D1C,0 4cqw 9cqw rgba(0,20,15,.45)}
+.tel img{display:block;width:100%;height:auto;border-radius:7.6cqw}
+.tel.mitte{width:44cqw;left:28cqw;z-index:3;bottom:-22cqw}
+.tel.links{width:38cqw;left:0;z-index:2;transform:rotate(-5deg)}
+.tel.rechts{width:38cqw;right:0;z-index:2;transform:rotate(5deg)}
 
-/* ---------- Drei Saeulen ---------- */
-.saeulen{display:grid;grid-template-columns:repeat(3, 1fr);gap:36px;margin:64px auto 0}
-.saeule{border-top:2px solid var(--gruen);padding-top:14px}
-.saeule .nr{font-family:var(--serif);font-weight:600;font-size:14px;letter-spacing:.06em;color:var(--gruen)}
-.saeule h2{font-family:var(--serif);font-weight:600;font-size:25px;line-height:1.15;margin:4px 0 0}
-.saeule p{font-size:16px;line-height:1.5;color:var(--grau);margin:10px 0 0}
+/* ---------- Drei Bereiche: drei Kacheln ---------- */
+.bereiche{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.bereich{padding:28px 26px 30px;display:flex;flex-direction:column;gap:10px}
+.bereich .kennung{color:var(--petrol)}
+.kachel .kennung::before{color:#7FB59C}
+.bereich h2{font:700 30px/1.05 var(--display);margin:6px 0 0;letter-spacing:-.01em}
+.bereich p{margin:0;color:var(--grau);font-size:16px;line-height:1.55}
 
-/* ---------- Erzaehlung ---------- */
-.geschichte{max-width:680px;margin:80px auto 0}
-.geschichte h2{font-family:var(--serif);font-weight:600;font-size:clamp(26px, 4vw, 34px);line-height:1.15;margin:0 0 16px}
-.geschichte p{font-size:18px;line-height:1.6;color:#2B3A31;margin:0 0 16px}
+/* ---------- Geschichte: breite Kachel mit Form ---------- */
+.geschichte{position:relative;overflow:hidden;margin-top:12px;padding:clamp(28px,5vw,64px)}
+.geschichte .blende{position:absolute;right:-40px;top:50%;transform:translateY(-50%);width:420px;height:420px;color:var(--salbei);opacity:.4}
+.geschichte .innen{position:relative;max-width:640px}
+.geschichte .kennung{color:var(--petrol)}
+.geschichte h2{font:700 clamp(32px,4.4vw,48px)/1.02 var(--display);letter-spacing:-.015em;margin:14px 0 18px;text-wrap:balance}
+.geschichte p{font-size:18px;line-height:1.62;color:#24372F;margin:0 0 14px}
+.weiter{display:inline-flex;align-items:center;gap:10px;margin-top:10px;font:600 16px/1 var(--sans);color:var(--petrol);text-decoration:none}
+.weiter::before{content:"";width:28px;height:2px;background:var(--petrol)}
+.weiter:hover{text-decoration:underline}
 
-/* ---------- Versprechen ---------- */
-.versprechen-teil{background:var(--hell);margin-top:72px;padding:56px 0 52px}
-.versprechen-teil h3{font-family:var(--serif);font-weight:600;font-size:26px;color:var(--tief);margin:0}
-.versprechen{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(3, 1fr);gap:28px}
-.versprechen li{position:relative;padding-left:20px;font-size:16px;line-height:1.5;color:var(--grau)}
-.versprechen li b{display:block;color:var(--tinte);font-weight:600;margin-bottom:2px}
-.versprechen li::before{content:"";position:absolute;left:0;top:.5em;width:8px;height:8px;border-radius:50%;background:var(--gruen)}
-.hinweis{margin:36px 0 0;padding-top:20px;border-top:1px solid var(--linie);font-size:15px;color:var(--grau)}
+/* ---------- Versprechen: Petrol-Kachel ---------- */
+.versprechen{position:relative;overflow:hidden;margin-top:12px;background:var(--petrol);color:var(--creme);
+  border-radius:var(--rund);padding:clamp(28px,5vw,56px)}
+.versprechen h2{font:700 clamp(30px,4vw,42px)/1.05 var(--display);margin:14px 0 26px}
+.versprechen .kennung{color:#A9D7C3}
+.liste{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0;padding:0;list-style:none}
+.liste li{background:rgba(244,251,245,.07);border:1px solid rgba(244,251,245,.12);border-radius:18px;padding:20px 20px 22px;color:#C9DED5;font-size:15.5px;line-height:1.5}
+.liste b{display:block;color:var(--creme);font:700 19px/1.2 var(--display);margin-bottom:8px}
+.liste a{color:var(--limette)}
+.versprechen .fusszeile{margin:26px 0 0;font-size:15px;color:#A9C9BC}
+.versprechen .fusszeile a{color:var(--limette)}
 
 /* ---------- Fuss ---------- */
-.fuss{padding:28px 20px 44px;font-size:14px;color:#8A9A90}
-.fuss nav{display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:12px}
-.fuss nav a{color:var(--tief);font-weight:500;text-decoration:none}
+.fuss{padding:30px 16px 40px;font-size:14px;color:#2E4A41}
+.fuss nav{display:flex;flex-wrap:wrap;gap:10px 24px;margin-bottom:12px;font:600 12.5px/1.4 var(--sans);letter-spacing:.1em;text-transform:uppercase}
+.fuss nav a{color:var(--tinte);text-decoration:none}
 .fuss nav a:hover{text-decoration:underline}
 .fuss p{margin:0}
 
-@media (max-width:760px){
-  .saeulen, .versprechen{grid-template-columns:1fr;gap:28px}
-  .saeulen{margin-top:48px}
-  .geschichte{margin-top:60px}
-  .dachzeile{margin-top:40px}
+@media (max-width:860px){
+  .kopf .blende{right:-170px;top:-40px;width:440px;height:440px}
+  .kopf .blende.zwei{display:none}
+  .geschichte .blende{opacity:.2}
+  .held{grid-template-columns:1fr;margin-top:36px}
+  .knoepfe{margin-bottom:24px}
+  .bereiche,.liste{grid-template-columns:1fr}
+  .nav{display:none}
 }
-@media (max-width:420px){
-  .marke svg{height:24px}
-  .marke img{width:36px;height:36px;border-radius:8px}
-  .plakette{font-size:10.5px;padding:5px 10px}
-}
+@media (prefers-reduced-motion:reduce){.knopf{transition:none}.knopf:active{transform:none}}
 
-/* ---------- Warum-Seite (warum.html, en/why.html) ----------
-   Szenen statt Funktionen: Text neben einem einzelnen Telefon, im Wechsel
-   links und rechts. Das Telefon misst in cqw seines eigenen Rahmens. */
-.kopf.schmal{padding-bottom:72px}
-.szene{display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:56px;align-items:center;
-  max-width:880px;margin:88px auto 0}
-.szene.umgekehrt{grid-template-columns:230px minmax(0,1fr)}
+/* ---------- Unterseiten: kleiner Kopf ohne Telefone ---------- */
+.kopf.klein{padding-bottom:clamp(36px,6vw,64px)}
+.kopf.klein .held{grid-template-columns:minmax(0,1fr);margin-top:44px;max-width:760px}
+.kopf.klein .lead{margin-bottom:0}
+
+/* ---------- Warum: Szenen als Kacheln ---------- */
+.szenen{display:grid;gap:12px;margin-top:12px}
+.szene{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:clamp(28px,5vw,64px);align-items:center;
+  padding:clamp(28px,5vw,56px);position:relative;overflow:hidden}
+.szene.umgekehrt{grid-template-columns:220px minmax(0,1fr)}
 .szene.umgekehrt .tel-rahmen{order:-1}
-.szene.ohne-bild{grid-template-columns:minmax(0,680px);justify-content:center}
-.szene h2{font-family:var(--serif);font-weight:600;font-size:clamp(26px,4vw,34px);line-height:1.15;margin:0 0 16px}
-.szene p{font-size:18px;line-height:1.6;color:#2B3A31;margin:0 0 16px}
+.szene.ohne-bild{grid-template-columns:minmax(0,1fr)}
+.szene .innen{max-width:600px;position:relative}
+.szene h2{font:700 clamp(28px,3.6vw,40px)/1.05 var(--display);letter-spacing:-.015em;margin:14px 0 16px;text-wrap:balance}
+.szene p{font-size:17.5px;line-height:1.62;color:#24372F;margin:0 0 14px}
 .szene p:last-child{margin-bottom:0}
-.zitat{font-family:var(--serif);font-size:clamp(20px,2.6vw,23px) !important;font-style:italic;
-  color:var(--tief) !important;border-left:3px solid var(--gruen);padding-left:16px}
-.tel-rahmen{container-type:inline-size;width:230px}
-.tel.solo{position:relative;width:100cqw;padding:3cqw;border-radius:18.6cqw;
-  box-shadow:0 0 0 .8cqw #5B615E, 0 0 0 1.6cqw #1B1D1C,
-             0 9cqw 20cqw rgba(4,24,15,.30), 0 2.4cqw 5.6cqw rgba(0,0,0,.22)}
+.szene .kennung{color:var(--petrol)}
+.zitat{font:600 clamp(20px,2.4vw,24px)/1.3 var(--display) !important;color:var(--petrol) !important;
+  background:#EAF5EF;border-left:4px solid var(--limette);border-radius:0 14px 14px 0;padding:14px 18px;margin:0 0 18px !important}
+.tel-rahmen{container-type:inline-size;width:220px;justify-self:center}
+.tel.solo{position:relative;width:100cqw;padding:3cqw;border-radius:18.6cqw;bottom:auto;
+  box-shadow:0 0 0 .8cqw #5B615E,0 0 0 1.6cqw #1B1D1C,0 9cqw 20cqw rgba(0,40,30,.28)}
 .tel.solo img{border-radius:16cqw}
-.tel.solo::after{top:6.5cqw;border-radius:30cqw}
-.solo{margin:40px 0 0;padding-top:26px;border-top:1px solid var(--linie);max-width:720px}
-.solo h4{font-family:var(--serif);font-weight:600;font-size:21px;color:var(--tief);margin:0 0 8px}
-.solo p{margin:0;font-size:16px;line-height:1.55;color:var(--grau)}
-.fragen{max-width:680px;margin:72px auto 0}
-.fragen h2{font-family:var(--serif);font-weight:600;font-size:clamp(26px,4vw,34px);margin:0 0 8px}
-.fragen h3{font-size:18px;font-weight:600;margin:26px 0 6px}
-.fragen p{font-size:17px;line-height:1.55;color:#2B3A31;margin:0}
-.aufruf{text-align:center;margin:72px auto 24px;max-width:560px}
-.knopf{display:inline-block;background:var(--gruen);color:var(--creme);text-decoration:none;
-  font-weight:600;font-size:17px;padding:14px 26px;border-radius:999px;
-  box-shadow:0 6px 16px rgba(11,75,49,.22);transition:background-color .15s ease, transform .1s ease}
-.knopf:hover{background:var(--tief)}
-.knopf:active{transform:scale(.97)}
-.aufruf p{margin:14px 0 0;font-size:15px;color:var(--grau)}
-.weiter{margin:24px 0 0;font-size:17px}
-.weiter a{font-weight:600;text-decoration:none}
-.weiter a:hover{text-decoration:underline}
-@media (max-width:760px){
-  .szene,.szene.umgekehrt{grid-template-columns:1fr;gap:32px;margin-top:64px}
+.szene .blende{position:absolute;right:-80px;bottom:-90px;width:300px;height:300px;color:var(--salbei);opacity:.3}
+.versprechen .solo{margin-top:22px;padding:22px 22px 24px;border-radius:18px;background:rgba(200,245,60,.08);border:1px solid rgba(200,245,60,.25)}
+.versprechen .solo h3{font:700 21px/1.2 var(--display);color:var(--creme);margin:0 0 8px}
+.versprechen .solo p{margin:0;color:#C9DED5;font-size:15.5px;line-height:1.55}
+.fragen{margin-top:12px;padding:clamp(28px,5vw,56px)}
+.fragen h2{font:700 clamp(28px,3.6vw,40px)/1.05 var(--display);margin:14px 0 6px}
+.fragen .kennung{color:var(--petrol)}
+.fragen dl{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0 0}
+.fragen dt{font:700 19px/1.25 var(--display);margin:0 0 8px}
+.fragen dd{margin:0;color:var(--grau);font-size:16px;line-height:1.55}
+.fragen .frage{background:#F1F8F4;border-radius:18px;padding:20px 20px 22px}
+.aufruf{margin-top:12px;background:var(--limette);border-radius:var(--rund);padding:clamp(28px,5vw,48px);
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px}
+.aufruf h2{font:700 clamp(26px,3.4vw,38px)/1.05 var(--display);margin:0;color:var(--tinte);max-width:16em;text-wrap:balance}
+.aufruf p{margin:8px 0 0;color:#2F4A2A;font-size:15.5px}
+.aufruf p a{color:var(--tinte)}
+.knopf.dunkel{background:var(--petrol);color:var(--creme)}
+.knopf.dunkel:hover{background:#00362F}
+@media (max-width:860px){
+  .szene,.szene.umgekehrt{grid-template-columns:1fr}
   .szene.umgekehrt .tel-rahmen{order:0}
-  .tel-rahmen{width:200px;margin:0 auto}
+  .tel-rahmen{width:190px}
+  .fragen dl{grid-template-columns:1fr}
 }
-@media (prefers-reduced-motion:reduce){.knopf{transition:none}}

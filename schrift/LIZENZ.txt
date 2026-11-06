@@ -2,6 +2,7 @@ Schriften auf jootapp.com
 
 Inter – Copyright (c) 2016 The Inter Project Authors (https://github.com/rsms/inter)
 Source Serif 4 – Copyright 2014-2021 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'.
+Outfit – Copyright 2021 The Outfit Project Authors (https://github.com/Outfitio/Outfit-Fonts)
 
-Beide Schriften stehen unter der SIL Open Font License, Version 1.1:
+Alle Schriften stehen unter der SIL Open Font License, Version 1.1:
 https://openfontlicense.org/open-font-license-official-text/
