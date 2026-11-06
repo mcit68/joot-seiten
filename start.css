@@ -94,3 +94,47 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(40px, 7.4vw, 66px);
   .marke img{width:36px;height:36px;border-radius:8px}
   .plakette{font-size:10.5px;padding:5px 10px}
 }
+
+/* ---------- Warum-Seite (warum.html, en/why.html) ----------
+   Szenen statt Funktionen: Text neben einem einzelnen Telefon, im Wechsel
+   links und rechts. Das Telefon misst in cqw seines eigenen Rahmens. */
+.kopf.schmal{padding-bottom:72px}
+.szene{display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:56px;align-items:center;
+  max-width:880px;margin:88px auto 0}
+.szene.umgekehrt{grid-template-columns:230px minmax(0,1fr)}
+.szene.umgekehrt .tel-rahmen{order:-1}
+.szene.ohne-bild{grid-template-columns:minmax(0,680px);justify-content:center}
+.szene h2{font-family:var(--serif);font-weight:600;font-size:clamp(26px,4vw,34px);line-height:1.15;margin:0 0 16px}
+.szene p{font-size:18px;line-height:1.6;color:#2B3A31;margin:0 0 16px}
+.szene p:last-child{margin-bottom:0}
+.zitat{font-family:var(--serif);font-size:clamp(20px,2.6vw,23px) !important;font-style:italic;
+  color:var(--tief) !important;border-left:3px solid var(--gruen);padding-left:16px}
+.tel-rahmen{container-type:inline-size;width:230px}
+.tel.solo{position:relative;width:100cqw;padding:3cqw;border-radius:18.6cqw;
+  box-shadow:0 0 0 .8cqw #5B615E, 0 0 0 1.6cqw #1B1D1C,
+             0 9cqw 20cqw rgba(4,24,15,.30), 0 2.4cqw 5.6cqw rgba(0,0,0,.22)}
+.tel.solo img{border-radius:16cqw}
+.tel.solo::after{top:6.5cqw;border-radius:30cqw}
+.solo{margin:40px 0 0;padding-top:26px;border-top:1px solid var(--linie);max-width:720px}
+.solo h4{font-family:var(--serif);font-weight:600;font-size:21px;color:var(--tief);margin:0 0 8px}
+.solo p{margin:0;font-size:16px;line-height:1.55;color:var(--grau)}
+.fragen{max-width:680px;margin:72px auto 0}
+.fragen h2{font-family:var(--serif);font-weight:600;font-size:clamp(26px,4vw,34px);margin:0 0 8px}
+.fragen h3{font-size:18px;font-weight:600;margin:26px 0 6px}
+.fragen p{font-size:17px;line-height:1.55;color:#2B3A31;margin:0}
+.aufruf{text-align:center;margin:72px auto 24px;max-width:560px}
+.knopf{display:inline-block;background:var(--gruen);color:var(--creme);text-decoration:none;
+  font-weight:600;font-size:17px;padding:14px 26px;border-radius:999px;
+  box-shadow:0 6px 16px rgba(11,75,49,.22);transition:background-color .15s ease, transform .1s ease}
+.knopf:hover{background:var(--tief)}
+.knopf:active{transform:scale(.97)}
+.aufruf p{margin:14px 0 0;font-size:15px;color:var(--grau)}
+.weiter{margin:24px 0 0;font-size:17px}
+.weiter a{font-weight:600;text-decoration:none}
+.weiter a:hover{text-decoration:underline}
+@media (max-width:760px){
+  .szene,.szene.umgekehrt{grid-template-columns:1fr;gap:32px;margin-top:64px}
+  .szene.umgekehrt .tel-rahmen{order:0}
+  .tel-rahmen{width:200px;margin:0 auto}
+}
+@media (prefers-reduced-motion:reduce){.knopf{transition:none}}
